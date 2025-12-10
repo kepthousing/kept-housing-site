@@ -602,18 +602,76 @@
             </div>
           </div>
 
-          <div>
-            <div class="card">
-              <h3>Quick Contact Form (optional)</h3>
-              <p class="muted">
-                If your platform supports forms, this section can become a real form.
-              </p>
-              <p style="margin-top: 0.7rem; font-size: 0.86rem;">
-                For now, email <strong>customersupport@keptluxe.com</strong> with
-                your name, phone, and what you're looking for.
-              </p>
-            </div>
-          </div>
+          <div class="card">
+  <h3>Quick Contact Form</h3>
+  <p class="muted" style="margin-bottom: 0.75rem;">
+    Send us a message and we’ll follow up as soon as possible.
+  </p>
+
+  <form
+    action="https://formspree.io/f/xanrpavd"
+    method="POST"
+  >
+    <div style="margin-bottom: 0.6rem;">
+      <label for="name" style="display:block; font-size:0.8rem; margin-bottom:0.2rem;">
+        Name
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        style="width:100%; padding:0.45rem 0.55rem; border-radius:0.5rem; border:1px solid var(--accent-light); font-size:0.9rem;"
+      />
+    </div>
+
+    <div style="margin-bottom: 0.6rem;">
+      <label for="email" style="display:block; font-size:0.8rem; margin-bottom:0.2rem;">
+        Email
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="_replyto"
+        required
+        style="width:100%; padding:0.45rem 0.55rem; border-radius:0.5rem; border:1px solid var(--accent-light); font-size:0.9rem;"
+      />
+    </div>
+
+    <div style="margin-bottom: 0.6rem;">
+      <label for="phone" style="display:block; font-size:0.8rem; margin-bottom:0.2rem;">
+        Phone (optional)
+      </label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        style="width:100%; padding:0.45rem 0.55rem; border-radius:0.5rem; border:1px solid var(--accent-light); font-size:0.9rem;"
+      />
+    </div>
+
+    <div style="margin-bottom: 0.8rem;">
+      <label for="message" style="display:block; font-size:0.8rem; margin-bottom:0.2rem;">
+        How can we help?
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        rows="4"
+        required
+        style="width:100%; padding:0.45rem 0.55rem; border-radius:0.5rem; border:1px solid var(--accent-light); font-size:0.9rem; resize:vertical;"
+      ></textarea>
+    </div>
+
+    <!-- Optional: tag which page this came from -->
+    <input type="hidden" name="form_name" value="Kept Housing Contact Form" />
+
+    <button type="submit" class="btn">
+      Send Message
+    </button>
+  </form>
+</div>
+
         </div>
       </div>
     </section>
