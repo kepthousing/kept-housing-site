@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kept Housing for All</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Kept Housing for All provides safe, stable co-living homes for veterans and independent seniors."
+  />
+  <style>
+    :root {
+      /* Soft neutral colors */
+      --bg: #faf8f6;            /* warm off-white */
+      --bg-alt: #ffffff;        /* white */
+      --hero-bg: #faf8f6;
+
+      /* Taupe / warm neutral accents */
+      --accent: #8b7665;        /* medium taupe */
+      --accent-dark: #5a4a3e;   /* deep taupe */
+      --accent-soft: #e8e1db;   /* soft beige */
+      --accent-light: #e5e3e0;  /* light border */
+
+      /* Text colors */
+      --text-main: #3f3a36;     /* deep warm gray */
+      --text-muted: #7a736e;    /* muted gray-taupe */
+
+      /* UI surfaces */
+      --pill-bg: #f1ebe6;
+      --card-bg: #ffffff;
+
+      /* Buttons */
+      --btn-primary-bg: #8b7665;
+      --btn-primary-border: #8b7665;
+      --btn-primary-text: #ffffff;
+
+      --btn-secondary-bg: transparent;
+      --btn-secondary-border: #8b7665;
+      --btn-secondary-text: #8b7665;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--accent-light);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    nav li a {
+      padding-bottom: 0.15rem;
+      border-bottom: 1px solid transparent;
+      color: var(--text-muted);
+    }
+
+    nav li a:hover {
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      background: var(--hero-bg);
+    }
+
+    .hero-grid { display: grid; gap: 2rem; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: var(--pill-bg);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-dark);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      margin-top: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--accent-dark);
+    }
+
+    .hero p {
+      font-size: 0.98rem;
+      max-width: 34rem;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid var(--btn-primary-border);
+      font-size: 0.9rem;
+      cursor: pointer;
+      background-color: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      transition: 0.15s ease;
+    }
+
+    .btn-outline {
+      background-color: var(--btn-secondary-bg);
+      color: var(--btn-secondary-text);
+      border-color: var(--btn-secondary-border);
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-image-card {
+      border-radius: 1.25rem;
+      border: 1px solid var(--accent-soft);
+      overflow: hidden;
+      background: var(--card-bg);
+    }
+
+    .hero-image {
+      height: 210px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--accent-dark);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .hero-card-body {
+      padding: 1rem 1.2rem 1.2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    section { padding: 2.25rem 0; }
+    section:nth-of-type(odd), section:nth-of-type(even) { background: var(--bg); }
+
+    .section-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.35rem;
+      color: var(--accent-dark);
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .two-column {
+      display: grid;
+      gap: 1.75rem;
+    }
+
+    .pill {
+      display: inline-block;
+      background: var(--pill-bg);
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent-dark);
+    }
+
+    .list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: #4b4b4b;
+    }
+
+    .list li {
+      margin-bottom: 0.55rem;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .card {
+      border-radius: 1rem;
+      border: 1px solid var(--accent-soft);
+      background: var(--card-bg);
+      padding: 1.1rem 1.1rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      color: var(--accent-dark);
+    }
+
+    .muted { color: var(--text-muted); font-size: 0.86rem; }
+
+    .steps {
+      list-style: none;
+      counter-reset: step;
+      font-size: 0.9rem;
+      color: #4b4b4b;
+    }
+
+    .steps li {
+      counter-increment: step;
+      margin-bottom: 0.9rem;
+      padding-left: 2.2rem;
+      position: relative;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      background: var(--bg-alt);
+      color: var(--accent-dark);
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .contact-item { font-size: 0.9rem; }
+
+    .contact-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--accent-light);
+      padding: 1.2rem 0 1.6rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: var(--bg-alt);
+    }
+
+    footer .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (min-width: 720px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        align-items: center;
+      }
+      .two-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .contact-grid {
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      .hero { padding-top: 2.4rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">Kept Housing for All</div>
+        <nav>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#communities">Communities</a></li>
+            <li><a href="#safety">Safety</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-badge">
+              <span>Safe · Stable · Community</span>
+            </div>
+            <h1>
+              Co-living homes for veterans and independent seniors in a safe,
+              welcoming community.
+            </h1>
+            <p>
+              Kept Housing for All provides clean, stable, co-living homes for
+              veterans and active older adults. Our mission is simple: a safe
+              place to live, people who care, and support when it matters.
+            </p>
+            <div class="hero-actions">
+              <a href="mailto:customersupport@keptluxe.com?subject=Housing%20Inquiry" class="btn">Apply for Housing</a>
+              <a href="mailto:customersupport@keptluxe.com?subject=Partner%20With%20Kept%20Housing%20for%20All" class="btn btn-outline">Partner with Us</a>
+            </div>
+            <div class="hero-meta">
+              Serving individuals who want a calm, safe home environment:
+              veterans, retirees, and other responsible adults.
+            </div>
+          </div>
+
+          <div class="hero-image-card">
+            <div class="hero-image">
+              Add a warm, bright photo here —
+              <br />for example: a cozy living room, a smiling group of seniors
+              or veterans, or a peaceful home exterior.
+            </div>
+            <div class="hero-card-body">
+              <strong>What we offer</strong>
+              <p>
+                Fully furnished co-living homes, simple pricing, and a focus on
+                stability and respect. We work to match residents with a home
+                that fits their needs and their season of life.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Kept Housing for All</h2>
+        <p class="section-subtitle">
+          A calm, safe home is the foundation for everything else.
+        </p>
+
+        <div class="two-column">
+          <div>
+            <div class="pill">Our mission</div>
+            <p style="font-size: 0.95rem; margin-bottom: 0.9rem;">
+              Kept Housing for All exists to provide safe, stable co-living
+              homes for people who need more than just a room — they need a
+              community. We currently focus on:
+            </p>
+            <ul class="list">
+              <li>Veterans transitioning into or within civilian life</li>
+              <li>Independent seniors wanting a calm, community-style home</li>
+              <li>Responsible adults who value safety, respect, and stability</li>
+            </ul>
+          </div>
+          <div>
+            <div class="pill">How we’re different</div>
+            <ul class="list">
+              <li>Small, home-like environments — not large facilities.</li>
+              <li>Clear house guidelines to protect every resident’s safety.</li>
+              <li>Thoughtful matching of residents for a peaceful environment.</li>
+              <li>Transparent, straightforward pricing — no hidden fees.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Communities -->
+    <section id="communities">
+      <div class="container">
+        <h2 class="section-title">Our Co-Living Communities</h2>
+        <p class="section-subtitle">
+          Designed for people who want independence with the comfort of shared space.
+        </p>
+
+        <div class="card-grid">
+          <article class="card">
+            <h3>Veterans Co-Living Homes</h3>
+            <p class="muted">
+              Stable housing and a sense of belonging for those who have served.
+            </p>
+            <ul class="list" style="margin-top: 0.75rem;">
+              <li>Furnished private bedrooms with shared common areas.</li>
+              <li>Quiet, respectful homes with clear house standards.</li>
+              <li>Support coordination with veteran organizations.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Retirement Co-Living Homes</h3>
+            <p class="muted">
+              For independent, active older adults seeking peace, safety, and community.
+            </p>
+            <ul class="list" style="margin-top: 0.75rem;">
+              <li>Easy-access or single-story homes when possible.</li>
+              <li>Low-maintenance living with included utilities.</li>
+              <li>Optional light social activities.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Future Housing Options</h3>
+            <p class="muted">
+              Expanding soon to additional responsible working adults.
+            </p>
+            <ul class="list" style="margin-top: 0.75rem;">
+              <li>Co-living for nurses, caregivers, and essential workers.</li>
+              <li>Stable housing for vetted gig-economy workers.</li>
+              <li>More locations as communities grow.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Safety -->
+    <section id="safety">
+      <div class="container">
+        <h2 class="section-title">Safety & Resident Standards</h2>
+        <p class="section-subtitle">
+          Everyone deserves to feel safe where they sleep.
+        </p>
+
+        <div class="two-column">
+          <div>
+            <div class="pill">Screening & house rules</div>
+            <ul class="list">
+              <li>Background and safety-focused resident screening.</li>
+              <li>Written guidelines for guests, quiet hours, and shared spaces.</li>
+              <li>No-tolerance policies for violence or illegal activity.</li>
+              <li>Collaboration with caseworkers when appropriate.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="pill">Home standards</div>
+            <ul class="list">
+              <li>Clean, regularly maintained homes.</li>
+              <li>Functional furnishings and essentials.</li>
+              <li>Safety checks and emergency info.</li>
+              <li>Focus on stability and consistency.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">
+          Simple steps to find out if one of our homes is a good fit.
+        </p>
+
+        <div class="two-column">
+          <div>
+            <ol class="steps">
+              <li><strong>Reach out.</strong> Email or call with your situation.</li>
+              <li><strong>Quick conversation.</strong> Discuss move-in date, budget, needs.</li>
+              <li><strong>Application & screening.</strong> Fill out application + checks.</li>
+              <li><strong>Home match.</strong> Receive a room offer if it's a good fit.</li>
+              <li><strong>Move in.</strong> Sign agreement, receive keys, get settled.</li>
+            </ol>
+          </div>
+
+          <div>
+            <div class="card">
+              <h3>Who we partner with</h3>
+              <p class="muted">We work with:</p>
+              <ul class="list" style="margin-top: 0.7rem;">
+                <li>Caseworkers and social workers</li>
+                <li>Veteran service organizations</li>
+                <li>Hospitals and clinics</li>
+                <li>Families assisting older loved ones</li>
+              </ul>
+              <p style="margin-top: 0.7rem; font-size: 0.86rem;">
+                Include “Partner” in the subject line if you're referring clients.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="section-subtitle">
+          Whether seeking housing or partnership, we’d love to hear from you.
+        </p>
+
+        <div class="contact-grid">
+          <div>
+            <div class="contact-item">
+              <div class="contact-label">Email</div>
+              <a href="mailto:customersupport@keptluxe.com">customersupport@keptluxe.com</a>
+            </div>
+
+            <div class="contact-item" style="margin-top: 0.8rem;">
+              <div class="contact-label">Phone</div>
+              <a href="tel:+19194381403">(919) 438-1403</a>
+            </div>
+
+            <div class="contact-item" style="margin-top: 0.8rem;">
+              <div class="contact-label">Best times to contact</div>
+              <p>Monday – Friday, 9:00 AM – 5:00 PM (Eastern)</p>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <h3>Quick Contact Form (optional)</h3>
+              <p class="muted">
+                If your platform supports forms, this section can become a real form.
+              </p>
+              <p style="margin-top: 0.7rem; font-size: 0.86rem;">
+                For now, email <strong>customersupport@keptluxe.com</strong> with
+                your name, phone, and what you're looking for.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span>© <span id="year"></span> Kept Housing for All. All rights reserved.</span>
+        <span>Safe, stable, community-focused co-living.</span>
+      </div>
+    </div>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
