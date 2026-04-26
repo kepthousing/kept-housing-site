@@ -1,246 +1,752 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Kept Housing for All</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="We connect people with housing and provide relocation support services to help them move and get settled." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kept Housing for All — Housing Connection & Relocation Support</title>
+  <meta name="description" content="Kept Housing for All connects people to housing opportunities and provides full-service relocation support — all for a simple flat fee." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-:root {
-  --bg: #faf8f6;
-  --accent: #8b7665;
-  --accent-dark: #5a4a3e;
-  --accent-soft: #e8e1db;
-  --text-main: #3f3a36;
-  --text-muted: #7a736e;
-}
+    :root {
+      --navy:    #0D1B2A;
+      --navy2:   #1A2E42;
+      --teal:    #1B7A6E;
+      --teal2:   #22A08C;
+      --sand:    #F5F0E8;
+      --sand2:   #EDE7DA;
+      --warm:    #C8A97B;
+      --white:   #FFFFFF;
+      --text:    #1A1A1A;
+      --muted:   #5A6270;
+      --border:  #D8D3CA;
+      --radius:  10px;
+      --radius-lg: 18px;
+    }
 
-body {
-  font-family: system-ui, sans-serif;
-  margin: 0;
-  background: var(--bg);
-  color: var(--text-main);
-}
+    html { scroll-behavior: smooth; }
 
-.container {
-  max-width: 1050px;
-  margin: auto;
-  padding: 20px;
-}
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--white);
+    }
 
-h1, h2, h3 {
-  color: var(--accent-dark);
-}
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,27,42,0.96);
+      backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--white);
+      letter-spacing: 0.01em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--warm); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--teal2);
+      color: var(--white) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 500 !important;
+    }
+    .nav-cta:hover { background: var(--teal) !important; color: var(--white) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; }
 
-.btn {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 999px;
-  background: var(--accent);
-  color: white;
-  text-decoration: none;
-  margin-right: 10px;
-}
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center;
+      padding: 120px 2rem 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(27,122,110,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(27,122,110,0.2);
+      border: 1px solid rgba(27,122,110,0.4);
+      color: var(--teal2);
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.35rem 0.9rem; border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+      line-height: 1.18;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--warm);
+    }
+    .hero-desc {
+      color: rgba(255,255,255,0.68);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      max-width: 440px;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.15s, opacity 0.15s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); opacity: 0.93; }
+    .btn-primary { background: var(--teal2); color: var(--white); }
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.85);
+      background: transparent;
+    }
+    .hero-cards {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem 1.6rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .hero-card-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(27,122,110,0.25);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-card-icon svg { width: 20px; height: 20px; stroke: var(--teal2); fill: none; stroke-width: 1.8; }
+    .hero-card-title {
+      font-size: 0.92rem; font-weight: 500; color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+    .hero-card-desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
 
-.section {
-  margin-top: 45px;
-}
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--sand);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+      display: flex; align-items: center; justify-content: center;
+      gap: 2.5rem; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.82rem; color: var(--muted); font-weight: 400;
+    }
+    .trust-item svg { width: 15px; height: 15px; stroke: var(--teal); fill: none; stroke-width: 2; flex-shrink: 0; }
 
-.card {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 15px;
-  border: 1px solid var(--accent-soft);
-}
+    /* ── SECTION SHARED ── */
+    section { padding: 90px 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      line-height: 1.22;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .section-desc {
+      color: var(--muted);
+      max-width: 540px;
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+    }
 
-img {
-  width: 100%;
-  border-radius: 12px;
-  margin-top: 15px;
-}
+    /* ── HOW IT WORKS ── */
+    .hiw { background: var(--sand); }
+    .hiw-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .hiw-step {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      position: relative;
+    }
+    .hiw-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.8rem;
+      color: var(--sand2);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .hiw-step h3 {
+      font-size: 1rem; font-weight: 500; color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .hiw-step p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
 
-small {
-  color: var(--text-muted);
-}
-</style>
+    /* ── SERVICES ── */
+    .services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .service-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.09); transform: translateY(-3px); }
+    .service-card-header {
+      padding: 2rem 1.75rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .service-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .service-icon svg { width: 22px; height: 22px; stroke-width: 1.7; fill: none; }
+    .si-teal { background: rgba(27,122,110,0.12); }
+    .si-teal svg { stroke: var(--teal); }
+    .si-warm { background: rgba(200,169,123,0.15); }
+    .si-warm svg { stroke: var(--warm); }
+    .si-navy { background: rgba(13,27,42,0.08); }
+    .si-navy svg { stroke: var(--navy); }
+    .service-card-header h3 {
+      font-size: 1.1rem; font-weight: 500; color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .service-card-header p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+    .service-card-body { padding: 1.5rem 1.75rem; }
+    .service-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .service-list li {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      font-size: 0.87rem; color: var(--text); line-height: 1.5;
+    }
+    .check {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: rgba(27,122,110,0.12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .check svg { width: 9px; height: 9px; stroke: var(--teal); fill: none; stroke-width: 2.5; }
+
+    /* ── FLAT FEE ── */
+    .flat-fee {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .flat-fee-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .flat-fee h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--white); line-height: 1.2; margin-bottom: 1.25rem;
+    }
+    .flat-fee h2 em { font-style: italic; color: var(--warm); }
+    .flat-fee p { color: rgba(255,255,255,0.65); line-height: 1.8; margin-bottom: 1.5rem; }
+    .fee-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .fee-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.5rem; }
+    .fee-amount {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem; color: var(--warm); line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .fee-sub { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 2rem; }
+    .fee-includes { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; text-align: left; }
+    .fee-includes li {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.88rem; color: rgba(255,255,255,0.75);
+    }
+    .fee-includes li::before {
+      content: '';
+      display: block; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal2); flex-shrink: 0;
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      background: #FFF8F0;
+      border-top: 3px solid var(--warm);
+      padding: 60px 2rem;
+    }
+    .disclaimer-inner {
+      max-width: 800px; margin: 0 auto;
+    }
+    .disclaimer h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem; color: var(--navy); margin-bottom: 1rem;
+    }
+    .disclaimer p { color: var(--muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 0.75rem; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--sand); }
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start;
+    }
+    .contact-info h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--navy); margin-bottom: 1rem;
+    }
+    .contact-info p { color: var(--muted); line-height: 1.75; margin-bottom: 2rem; }
+    .contact-detail {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 0.9rem; font-size: 0.9rem; color: var(--text);
+    }
+    .contact-detail svg { width: 16px; height: 16px; stroke: var(--teal); fill: none; stroke-width: 2; flex-shrink: 0; }
+    .contact-detail a { color: var(--teal); text-decoration: none; }
+    .contact-detail a:hover { text-decoration: underline; }
+
+    /* ── FORM ── */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block; font-size: 0.83rem; font-weight: 500;
+      color: var(--navy); margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+      color: var(--text); background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--teal2); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select { appearance: none; cursor: pointer; }
+    .form-note { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.6; }
+    .form-submit {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--teal2); color: var(--white);
+      border: none; border-radius: 8px;
+      font-size: 0.95rem; font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--teal); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 3rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      color: var(--white); font-size: 1.05rem; text-decoration: none;
+    }
+    .footer-logo span { color: var(--warm); }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.35); width: 100%; margin-top: 1.5rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-cards { display: none; }
+      .flat-fee-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Kept <span>Housing</span> for All</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+  <div class="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
 <!-- HERO -->
-<section>
-  <!-- WHAT WE DO / DON'T DO -->
-<section class="section">
-  <h1>Connecting people to housing and relocation support.</h1>
-
-  <p>
-    Kept Housing for All helps individuals find housing opportunities and provides relocation support 
-    to help them move, plan, and get settled in a new area with confidence.
-  </p>
-
-  <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0">
-
-  <a href="#contact" class="btn">Get Started</a>
-</section>
-
-<!-- WHAT WE DO -->
-<section class="section">
-  <h2>What We Do</h2>
-
-  <p>
-    We connect people seeking housing with available opportunities and support individuals through the relocation process.
-    This includes housing guidance, relocation planning, and general resource direction.
-  </p>
-</section>
-
-<!-- HOUSING -->
-<section class="section">
-  <h2>Housing Connections</h2>
-
-  <div class="card">
-    <h3>For People Seeking Housing</h3>
-    <ul>
-      <li>Help finding available housing options</li>
-      <li>Guidance on applications</li>
-      <li>Support connecting with landlords</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>For Landlords</h3>
-    <ul>
-      <li>Tenant matching support</li>
-      <li>Help filling vacancies</li>
-      <li>Simple communication between parties</li>
-    </ul>
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="5"/><line x1="6" y1="3" x2="6" y2="6"/><line x1="6" y1="6" x2="8" y2="8"/></svg>
+        Available in North Carolina
+      </div>
+      <h1>We do the <em>legwork</em> so you can focus on what's next.</h1>
+      <p class="hero-desc">Kept Housing for All connects people to real housing opportunities, advocates on your behalf, and guides you through every step of your relocation — all for a single flat fee.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary">Get Started Today</a>
+        <a href="#services" class="btn btn-ghost">See What We Offer</a>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="hero-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+        </div>
+        <div>
+          <div class="hero-card-title">Housing Connections</div>
+          <div class="hero-card-desc">We connect renters with landlords and available listings — matching both sides.</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div>
+          <div class="hero-card-title">Relocation Support</div>
+          <div class="hero-card-desc">From planning your move to exploring your new area — we handle it for you.</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div>
+          <div class="hero-card-title">One Flat Fee</div>
+          <div class="hero-card-desc">No hidden costs. One transparent price covers all services you need.</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- RELOCATION -->
-<section class="section">
-  <h2>Relocation Support Services</h2>
-
-  <div class="card">
-    <h3>Housing Guidance</h3>
-    <ul>
-      <li>Understanding rental options</li>
-      <li>Application preparation guidance</li>
-      <li>Lease expectations explained simply</li>
-    </ul>
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/></svg>
+    Transparent, flat-fee pricing
   </div>
-
-  <div class="card">
-    <h3>Job Search Direction</h3>
-    <ul>
-      <li>Suggestions on where to apply</li>
-      <li>General resume improvement tips</li>
-      <li>Interview preparation guidance</li>
-    </ul>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+    We advocate on your behalf
   </div>
-
-  <div class="card">
-    <h3>Relocation Planning</h3>
-    <ul>
-      <li>Step-by-step moving guidance</li>
-      <li>Local area resources</li>
-      <li>Help staying organized during your move</li>
-      <li>Help finding local hobbies and interest</li>
-      <li>Video Tours</li>
-    </ul>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.64A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+    (919) 438-1403
   </div>
-
-  <small>
-    We provide guidance and support only. We do not guarantee housing or employment.
-  </small>
-</section>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    customersupport@keptluxe.com
+  </div>
+</div>
 
 <!-- HOW IT WORKS -->
-<section class="section">
-  <h2>How It Works</h2>
+<section class="hiw" id="how-it-works">
+  <div class="container">
+    <div class="section-label">The process</div>
+    <h2 class="section-title">Simple steps to get the help you need</h2>
+    <p class="section-desc">We make it easy. Just reach out — we take care of the rest so you don't have to figure it all out alone.</p>
+    <div class="hiw-steps">
+      <div class="hiw-step">
+        <div class="hiw-num">01</div>
+        <h3>Tell us your situation</h3>
+        <p>Fill out our contact form and let us know whether you're looking for housing, listing a property, or planning a relocation.</p>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-num">02</div>
+        <h3>We review your needs</h3>
+        <p>We take time to understand your specific goals, timeline, and any concerns before moving forward.</p>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-num">03</div>
+        <h3>We get to work for you</h3>
+        <p>We research, organize, connect, and plan — handling the communication and legwork on your behalf.</p>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-num">04</div>
+        <h3>You move forward with confidence</h3>
+        <p>You receive clear guidance, connections, and support — then you make the final decisions that are right for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <ol>
-    <li>Submit your information through our form</li>
-    <li>We review your needs</li>
-    <li>We provide housing and relocation guidance</li>
-    <li>You connect directly with landlords or opportunities</li>
-  </ol>
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label">What we offer</div>
+    <h2 class="section-title">Services built around your needs</h2>
+    <p class="section-desc">Whether you need housing, are a landlord with a vacancy, or you're relocating to a new city — we have support for you.</p>
+
+    <div class="services-grid">
+
+      <!-- Housing Seekers -->
+      <div class="service-card">
+        <div class="service-card-header">
+          <div class="service-icon si-teal">
+            <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+          </div>
+          <h3>For People Seeking Housing</h3>
+          <p>We help you identify available housing options and connect you with landlords — simplifying a stressful process.</p>
+        </div>
+        <div class="service-card-body">
+          <ul class="service-list">
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Help identifying available rental options</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Guidance on application processes</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Connection and introductions to landlords</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Support understanding lease expectations</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>We advocate for you throughout the process</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Landlords -->
+      <div class="service-card">
+        <div class="service-card-header">
+          <div class="service-icon si-warm">
+            <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
+          <h3>For Landlords</h3>
+          <p>We help you find qualified prospects and fill vacancies. Post your listing and let us handle the matchmaking.</p>
+        </div>
+        <div class="service-card-body">
+          <ul class="service-list">
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Listing your available property on our platform</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Matching with people actively seeking housing</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Assistance filling vacancies faster</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Simple communication facilitation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Relocation -->
+      <div class="service-card">
+        <div class="service-card-header">
+          <div class="service-icon si-navy">
+            <svg viewBox="0 0 24 24"><path d="M3 12l18-9-9 18-2-8-7-1z"/></svg>
+          </div>
+          <h3>Full Relocation Support</h3>
+          <p>Moving to a new area is a lot. We plan, organize, and guide you so you can settle in without the overwhelm.</p>
+        </div>
+        <div class="service-card-body">
+          <ul class="service-list">
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Step-by-step personalized moving plan</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Finding potential housing in your new location</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Job search direction and resources</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Local hobbies and community interest discovery</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Virtual video tours of neighborhoods</li>
+            <li><div class="check"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>Local area resource directory</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FLAT FEE -->
+<section class="flat-fee" id="pricing">
+  <div class="container">
+    <div class="flat-fee-inner">
+      <div>
+        <div class="section-label" style="color: var(--teal2);">Pricing</div>
+        <h2>One <em>flat fee.</em> No surprises.</h2>
+        <p>We believe getting help finding housing or navigating a move shouldn't come with confusing fees or billing surprises. You pay one simple price — and we handle everything included in your service.</p>
+        <p>Contact us to learn about the current fee for your specific service before committing to anything. There is never any obligation just for reaching out.</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top: 0.5rem;">Ask About Pricing</a>
+      </div>
+      <div class="fee-card">
+        <div class="fee-label">All-inclusive service fee</div>
+        <div class="fee-amount">Flat Rate</div>
+        <div class="fee-sub">One price covers your full service package</div>
+        <ul class="fee-includes">
+          <li>Initial consultation and needs review</li>
+          <li>Research and outreach on your behalf</li>
+          <li>Housing connection or listing support</li>
+          <li>Relocation planning (if applicable)</li>
+          <li>Video tours and local area guidance</li>
+          <li>Ongoing communication and follow-up</li>
+          <li>Access to resources and referrals</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="disclaimer">
+  <div class="disclaimer-inner">
+    <h2>Important: What We Are & What We're Not</h2>
+    <p>Kept Housing for All is an independent housing connection and relocation support service. We are <strong>not</strong> a licensed real estate broker, real estate agent, property management company, or legal or financial advisor.</p>
+    <p>We provide informational guidance, organizational support, and connection services only. We do <strong>not</strong> negotiate leases or contracts on your behalf, guarantee housing placement or employment, and we are not responsible for decisions made by landlords, employers, or other third parties.</p>
+    <p>All final decisions — including signing any rental agreement or lease — are made solely by you. We strongly encourage you to review any documents with a qualified professional before signing.</p>
+  </div>
 </section>
 
 <!-- CONTACT -->
-<section class="section" id="contact">
-  <h2>Get Help</h2>
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="section-label">Get in touch</div>
+        <h2>Ready to get started?</h2>
+        <p>Fill out the form and we'll be in touch to learn more about what you need. There's no obligation — just a conversation to see how we can help.</p>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01-.07 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          <a href="tel:+19194381403">(919) 438-1403</a>
+        </div>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:customersupport@keptluxe.com">customersupport@keptluxe.com</a>
+        </div>
+      </div>
 
-  <p>Email: customersupport@keptluxe.com</p>
-  <p>Phone: (919) 438-1403</p>
-
-  <br>
-
-  <section class="section">
-  <h2>Contact</h2>
-
-  <p>Email: customersupport@keptluxe.com</p>
-  <p>Phone: (919) 438-1403</p>
-
-  <br>
-
-  <h3>Send a Message</h3>
-
-  <form action="https://formspree.io/f/xanrpavd" method="POST">
-    
-    <input type="text" name="name" placeholder="Your Name" required
-      style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc;" />
-
-    <input type="email" name="email" placeholder="Your Email" required
-      style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc;" />
-
-    <select name="type" required
-      style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
-      <option value="">I am...</option>
-      <option value="tenant">Looking for Housing</option>
-      <option value="landlord">A Landlord</option>
-      <option value="other">Relocate Services</option>
-    </select>
-
-    <textarea name="message" placeholder="Your message..." required
-      style="width:100%; padding:10px; height:120px; border-radius:8px; border:1px solid #ccc;"></textarea>
-
-    <br><br>
-
-    <button type="submit" class="btn">Send Message</button>
-
-  </form>
+      <div class="form-card">
+        <!-- Replace YOUR_FORMSPREE_ID with your actual Formspree form ID -->
+        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">First name</label>
+              <input type="text" id="first-name" name="first_name" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last name</label>
+              <input type="text" id="last-name" name="last_name" placeholder="Smith" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="jane@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone number (optional)</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label for="service">I am a...</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Select your situation</option>
+              <option value="housing-seeker">Person looking for housing</option>
+              <option value="landlord">Landlord with a listing</option>
+              <option value="relocation">Planning a relocation</option>
+              <option value="general">Just have a question</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell us about your situation</label>
+            <textarea id="message" name="message" placeholder="Share a bit about your needs, timeline, or any questions you have..."></textarea>
+          </div>
+          <p class="form-note">By submitting this form, you agree to be contacted about Kept Housing for All's services. We do not sell your information. Submitting this form does not create any legal agreement or obligation.</p>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>
 
-  <iframe 
-    src="YOUR-JOTFORM-LINK"
-    width="100%" 
-    height="650"
-    frameborder="0"
-    style="border:none;">
-  </iframe>
-</section>
-
-</div>
-
-  <footer style="margin-top:40px; padding:20px; border-top:1px solid #e8e1db; text-align:center; font-size:0.85rem; color:#7a736e;">
-  
-  <p>Kept Housing for All</p>
-
-  <p>
-    <a href="terms.html" style="color:#5a4a3e; text-decoration:none;">
-      Terms of Service
-    </a>
-  </p>
-
-  <p>
-    Contact: customersupport@keptluxe.com
-  </p>
-
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">Kept <span>Housing</span> for All</a>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="/terms.html">Terms of Service</a></li>
+    </ul>
+    <p class="footer-copy">© 2024 Kept Housing for All. Not a licensed real estate broker or legal advisor. All services are informational and connective in nature. Final decisions and agreements are the sole responsibility of the parties involved.</p>
+  </div>
 </footer>
-  
+
+<script>
+  // Hamburger menu
+  const ham = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  ham.addEventListener('click', () => {
+    const open = navLinks.style.display === 'flex';
+    navLinks.style.display = open ? 'none' : 'flex';
+    if (!open) {
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '68px';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'rgba(13,27,42,0.97)';
+      navLinks.style.padding = '1.5rem 2rem';
+      navLinks.style.gap = '1.25rem';
+    }
+  });
+  // Close menu on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => { navLinks.style.display = 'none'; });
+  });
+</script>
+
 </body>
 </html>
