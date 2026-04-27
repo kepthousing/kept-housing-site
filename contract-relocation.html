@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relocation Service Agreement | Kept Housing for All</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0D1B2A; --navy2: #1A2E42;
+      --teal: #1B7A6E; --teal2: #22A08C;
+      --sand: #F5F0E8; --sand2: #EDE7DA;
+      --warm: #C8A97B; --white: #FFFFFF;
+      --text: #1A1A1A; --muted: #5A6270;
+      --border: #D8D3CA; --radius: 10px; --radius-lg: 18px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.7; color: var(--text); background: var(--sand); }
+
+    header {
+      background: var(--navy); padding: 1.5rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-family: 'DM Serif Display', serif; color: var(--white); font-size: 1.1rem; text-decoration: none; }
+    .logo span { color: var(--warm); }
+    .back-link { font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; }
+    .back-link:hover { color: var(--white); }
+
+    .page { max-width: 780px; margin: 3rem auto; padding: 0 1.5rem 4rem; }
+    .page-title { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .page-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 2.5rem; }
+
+    .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.25rem 2.5rem; margin-bottom: 1.5rem; }
+    .card-title { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.25rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-size: 0.83rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 0.7rem 1rem; font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+      color: var(--text); background: var(--white); outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--teal2); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-group select { appearance: none; cursor: pointer; }
+
+    .section-divider {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem; margin: 1.5rem 0 1.1rem;
+    }
+
+    .services-checklist {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;
+      margin-bottom: 1.1rem;
+    }
+    .service-check {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.87rem; color: var(--text);
+    }
+    .service-check input[type="checkbox"] {
+      width: 17px; height: 17px; flex-shrink: 0;
+      cursor: pointer; accent-color: var(--teal2);
+    }
+
+    .agreement-box {
+      background: var(--sand); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.5rem; font-size: 0.83rem; color: var(--muted);
+      line-height: 1.8; max-height: 260px; overflow-y: auto; margin-bottom: 1.25rem;
+    }
+    .agreement-box h4 { font-size: 0.85rem; font-weight: 500; color: var(--navy); margin: 1rem 0 0.4rem; }
+    .agreement-box h4:first-child { margin-top: 0; }
+
+    .checkbox-group { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; }
+    .checkbox-group input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; cursor: pointer; accent-color: var(--teal2); }
+    .checkbox-group label { font-size: 0.87rem; color: var(--text); line-height: 1.55; cursor: pointer; }
+
+    .sig-wrap { border: 1px solid var(--border); border-radius: var(--radius); background: var(--white); overflow: hidden; margin-bottom: 0.75rem; }
+    .sig-toolbar { background: var(--sand2); border-bottom: 1px solid var(--border); padding: 0.5rem 1rem; display: flex; align-items: center; justify-content: space-between; }
+    .sig-toolbar span { font-size: 0.75rem; color: var(--muted); }
+    .sig-clear { font-size: 0.75rem; color: var(--teal); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+    .sig-clear:hover { text-decoration: underline; }
+    canvas#sigCanvas { display: block; width: 100%; height: 160px; cursor: crosshair; touch-action: none; }
+    .sig-hint { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.25rem; }
+
+    .date-display { font-size: 0.88rem; color: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.7rem 1rem; background: var(--sand); }
+
+    .submit-btn {
+      width: 100%; padding: 1rem;
+      background: var(--teal2); color: var(--white);
+      border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer; transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover { background: var(--teal); }
+    .submit-btn:disabled { background: var(--border); cursor: not-allowed; }
+
+    .form-footer-note { font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 1.25rem; line-height: 1.65; }
+
+    .success-msg { display: none; background: #EAF7F3; border: 1px solid var(--teal2); border-radius: var(--radius-lg); padding: 2rem; text-align: center; color: var(--navy); }
+    .success-msg h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .success-msg p { font-size: 0.88rem; color: var(--muted); }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .services-checklist { grid-template-columns: 1fr; }
+      .card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">Kept <span>Housing</span> for All</a>
+  <a href="index.html" class="back-link">← Back to site</a>
+</header>
+
+<div class="page">
+  <h1 class="page-title">Relocation Service Agreement</h1>
+  <p class="page-sub">Tell us about your move and the services you need. Read and sign the agreement below to get started.</p>
+
+  <div id="successMsg" class="success-msg card">
+    <h3>Agreement received!</h3>
+    <p>Thank you. We'll review your relocation details and be in touch shortly at the email you provided.</p>
+  </div>
+
+  <form id="contractForm" action="https://formspree.io/f/xanrpavd" method="POST">
+    <input type="hidden" name="_subject" value="New Relocation Service Agreement" />
+    <input type="hidden" name="form_type" value="Relocation Contract" />
+
+    <!-- Personal Info -->
+    <div class="card">
+      <div class="card-title">Your Information</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="first_name">First name *</label>
+          <input type="text" id="first_name" name="first_name" required placeholder="Maria" />
+        </div>
+        <div class="form-group">
+          <label for="last_name">Last name *</label>
+          <input type="text" id="last_name" name="last_name" required placeholder="Garcia" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email address *</label>
+          <input type="email" id="email" name="email" required placeholder="maria@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="household">Household size</label>
+        <select id="household" name="household">
+          <option value="" disabled selected>Select</option>
+          <option>Just me</option>
+          <option>Me + partner / spouse</option>
+          <option>Me + 1 child</option>
+          <option>Me + 2 children</option>
+          <option>Me + 3+ children</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Relocation Details -->
+    <div class="card">
+      <div class="card-title">Relocation Details</div>
+
+      <div class="section-divider">Where you're moving</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="moving_from">Moving from (city, state) *</label>
+          <input type="text" id="moving_from" name="moving_from" required placeholder="City, State" />
+        </div>
+        <div class="form-group">
+          <label for="moving_to">Moving to (city, state) *</label>
+          <input type="text" id="moving_to" name="moving_to" required placeholder="City, State" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="move_timeline">Target move date / timeline</label>
+          <select id="move_timeline" name="move_timeline">
+            <option value="" disabled selected>Select timeline</option>
+            <option>As soon as possible</option>
+            <option>Within 30 days</option>
+            <option>1–3 months</option>
+            <option>3–6 months</option>
+            <option>6–12 months</option>
+            <option>Just planning ahead</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="housing_budget">Monthly housing budget</label>
+          <select id="housing_budget" name="housing_budget">
+            <option value="" disabled selected>Select range</option>
+            <option>Under $800/mo</option>
+            <option>$800–$1,200/mo</option>
+            <option>$1,200–$1,800/mo</option>
+            <option>$1,800–$2,500/mo</option>
+            <option>$2,500+/mo</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="section-divider">Services you need</div>
+      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.9rem;">Select all that apply — your flat fee covers all chosen services.</p>
+      <div class="services-checklist">
+        <label class="service-check"><input type="checkbox" name="service_housing" value="yes" /> Housing search support</label>
+        <label class="service-check"><input type="checkbox" name="service_moving_plan" value="yes" /> Step-by-step moving plan</label>
+        <label class="service-check"><input type="checkbox" name="service_job" value="yes" /> Job search direction</label>
+        <label class="service-check"><input type="checkbox" name="service_video_tour" value="yes" /> Virtual video neighborhood tours</label>
+        <label class="service-check"><input type="checkbox" name="service_hobbies" value="yes" /> Local hobbies &amp; community interests</label>
+        <label class="service-check"><input type="checkbox" name="service_resources" value="yes" /> Local resource directory</label>
+      </div>
+
+      <div class="section-divider">A little more about your move</div>
+      <div class="form-group">
+        <label for="reason_for_move">Reason for relocating (optional)</label>
+        <select id="reason_for_move" name="reason_for_move">
+          <option value="" disabled selected>Select one</option>
+          <option>New job or career opportunity</option>
+          <option>Family or personal reasons</option>
+          <option>Cost of living</option>
+          <option>Lifestyle change</option>
+          <option>Prefer not to say</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="special_needs">Any special needs or considerations</label>
+        <textarea id="special_needs" name="special_needs" placeholder="Pets, accessibility requirements, school districts, proximity to certain areas, anything else we should know..."></textarea>
+      </div>
+    </div>
+
+    <!-- Agreement -->
+    <div class="card">
+      <div class="card-title">Service Agreement</div>
+      <div class="agreement-box">
+        <h4>1. Nature of Services</h4>
+        Kept Housing for All ("Provider") provides relocation support and housing connection services. Provider is not a licensed real estate broker, real estate agent, property management company, employment agency, attorney, or financial advisor. All services are informational, organizational, and connective in nature only.
+
+        <h4>2. Relocation Support Services</h4>
+        Based on the services selected by the client, Provider will make reasonable efforts to: identify available housing options in the client's target area; provide a personalized step-by-step moving plan; offer general job search direction and resources; arrange virtual video tours of neighborhoods and areas of interest; identify local hobbies, activities, and community resources; and compile a local resource directory for the client's destination area. Provider acts as a support resource and personal advocate — the client remains responsible for all final decisions.
+
+        <h4>3. No Guarantees</h4>
+        Provider makes no guarantee of housing placement, employment, or any other specific outcome. All results depend on factors outside Provider's control including availability, landlord decisions, employer decisions, and the client's individual qualifications and circumstances. Job search direction is general guidance only and does not constitute employment placement services.
+
+        <h4>4. Client Responsibility</h4>
+        The client is solely responsible for reviewing, evaluating, and signing any lease, rental agreement, employment contract, or other legal document. Provider strongly recommends consulting qualified legal or professional advisors before signing any binding agreement. Provider is not a party to any lease, rental agreement, or employment agreement.
+
+        <h4>5. Video Tours</h4>
+        Virtual video tours are informational only and are not a substitute for an in-person visit. Provider does not guarantee that any property, neighborhood, or area shown will be available or suitable for the client's needs at the time of their move.
+
+        <h4>6. Flat Fee & Payment</h4>
+        Services are provided for a flat fee agreed upon before services begin. The fee covers the scope of services selected and discussed at intake. No refund is guaranteed once services have commenced, unless otherwise agreed in writing.
+
+        <h4>7. Confidentiality</h4>
+        Provider will keep client information confidential and will not sell or share personal information with third parties except as necessary to provide the agreed services.
+
+        <h4>8. Limitation of Liability</h4>
+        Provider's liability is limited to the flat fee paid. Provider is not liable for any indirect, incidental, or consequential damages arising from the use of its services, including but not limited to damages related to housing, employment, or relocation decisions.
+
+        <h4>9. Governing Law</h4>
+        This agreement is governed by the laws of the State of Texas.
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="agree1" name="agreed_to_terms" value="yes" required />
+        <label for="agree1">I have read and understand the Service Agreement above. I understand that Kept Housing for All is not a licensed real estate broker, employment agency, or legal advisor, and that no specific outcome is guaranteed.</label>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="agree2" name="agreed_responsibility" value="yes" required />
+        <label for="agree2">I understand I am solely responsible for reviewing and signing any lease, rental agreement, or employment contract, and that I should consult a qualified professional before doing so.</label>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="agree3" name="agreed_fee" value="yes" required />
+        <label for="agree3">I agree to pay the flat fee discussed with Provider before services begin.</label>
+      </div>
+    </div>
+
+    <!-- Signature -->
+    <div class="card">
+      <div class="card-title">Signature</div>
+      <div class="sig-wrap">
+        <div class="sig-toolbar">
+          <span>Sign with your mouse or finger below</span>
+          <button type="button" class="sig-clear" onclick="clearSig()">Clear</button>
+        </div>
+        <canvas id="sigCanvas"></canvas>
+      </div>
+      <p class="sig-hint">By signing above, you agree to the Relocation Service Agreement on behalf of yourself.</p>
+      <input type="hidden" id="sigData" name="signature_data" />
+
+      <div class="form-group" style="margin-top:1rem;">
+        <label>Date</label>
+        <div class="date-display" id="todayDate"></div>
+        <input type="hidden" name="signed_date" id="signedDate" />
+      </div>
+      <div class="form-group">
+        <label for="print_name">Print full name *</label>
+        <input type="text" id="print_name" name="print_name" required placeholder="Maria Garcia" />
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Submit Signed Agreement →</button>
+      <p class="form-footer-note">A copy of this submission will be sent to your email and to Kept Housing for All. This electronic signature constitutes your agreement to the terms above.</p>
+    </div>
+  </form>
+</div>
+
+<script>
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('todayDate').textContent = dateStr;
+  document.getElementById('signedDate').value = dateStr;
+
+  const canvas = document.getElementById('sigCanvas');
+  const ctx = canvas.getContext('2d');
+  let drawing = false, hasSig = false;
+
+  function resizeCanvas() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width; canvas.height = 160;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    if (e.touches) return { x: (e.touches[0].clientX - rect.left) * scaleX, y: (e.touches[0].clientY - rect.top) * scaleY };
+    return { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
+  }
+
+  canvas.addEventListener('mousedown', e => { drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
+  canvas.addEventListener('mousemove', e => {
+    if (!drawing) return;
+    const p = getPos(e); ctx.lineTo(p.x, p.y);
+    ctx.strokeStyle = '#0D1B2A'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.stroke(); hasSig = true;
+  });
+  canvas.addEventListener('mouseup', () => { drawing = false; saveSignature(); });
+  canvas.addEventListener('mouseleave', () => { drawing = false; });
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
+  canvas.addEventListener('touchmove', e => {
+    e.preventDefault(); if (!drawing) return;
+    const p = getPos(e); ctx.lineTo(p.x, p.y);
+    ctx.strokeStyle = '#0D1B2A'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.stroke(); hasSig = true;
+  });
+  canvas.addEventListener('touchend', () => { drawing = false; saveSignature(); });
+
+  function saveSignature() { document.getElementById('sigData').value = canvas.toDataURL(); }
+  function clearSig() { ctx.clearRect(0, 0, canvas.width, canvas.height); document.getElementById('sigData').value = ''; hasSig = false; }
+
+  const form = document.getElementById('contractForm');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (!hasSig) { alert('Please sign the agreement before submitting.'); return; }
+    saveSignature();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = 'Submitting...';
+    const data = new FormData(form);
+    data.set('signature_data', 'Signature captured electronically on ' + dateStr);
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else { throw new Error(); }
+    } catch {
+      btn.disabled = false; btn.textContent = 'Submit Signed Agreement →';
+      alert('Something went wrong. Please email us directly at customersupport@keptluxe.com');
+    }
+  });
+</script>
+</body>
+</html>
